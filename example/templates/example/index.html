@@ -1,0 +1,60 @@
+{% load staticfiles %}
+{% load compress %}
+<!DOCTYPE html>
+<html>
+<title>Example</title>
+<body>
+
+<script type="text/x-handlebars" data-template-name="application">
+
+  <div id="main">
+    {{ outlet }}
+  </div>
+
+</script>
+
+<script type="text/x-handlebars" data-template-name="person">
+
+<table width="250px">
+<thead>
+<th>id</th>
+<th>username</th>
+</thead>
+<tbody>
+   {{#each person in controller.paginatedContent}}
+    <tr>
+      <td>{{person.id}}</td>
+      <td>{{view Ember.TextField valueBinding="person.username"}}</td>
+    </tr>
+   {{/each}}
+</tbody>
+</table>
+
+<div name="prev">{{#linkTo 'person.page' prevPage target="controller"}}Prev{{/linkTo}}</div>
+<ul class="pagination gui-text">
+  {{#each pages}}
+    {{view PersonApp.PaginationView contentBinding="this"}}
+  {{/each}}
+</ul>
+<div name="next">{{#linkTo 'person.page' nextPage target="controller"}}Next{{/linkTo}}</div>
+
+</script>
+
+<script type="text/x-handlebars" data-template-name="pagination">
+
+{{#with view}}
+{{#linkTo 'person.page' page}}
+  {{content.page_id}}
+{{/linkTo}}
+{{/with}}
+
+</script>
+
+{% compress js %}
+<script src="{{ STATIC_URL }}script/vendor/jquery-1.9.1.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}script/vendor/handlebars-1.0.0-rc.3.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}script/vendor/ember-1.0.0-rc.2.js" type="text/javascript"></script>
+<script src="{% static 'script/app/app.js' %}" type="text/javascript"></script>
+{% endcompress %}
+</body>
+</html>
