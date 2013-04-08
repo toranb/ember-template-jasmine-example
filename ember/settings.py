@@ -31,6 +31,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 SECRET_KEY = 'w!50w0@sxg6o=mid=%uyd7%l)zhmttolz8aw-4ay#+e%&fj_cd'
@@ -62,5 +63,14 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
     'example',
+)
+
+NODE_ROOT = join(PROJECT_ROOT, '..', 'node_modules')
+HANDLEBARS_PATH = join(NODE_ROOT, 'django-ember-precompile', 'bin', 'django-ember-precompile')
+
+COMPRESS_ENABLED = True
+COMPRESS_PRECOMPILERS = (
+    ('text/x-handlebars', '{} {{infile}}'.format(HANDLEBARS_PATH)),
 )
