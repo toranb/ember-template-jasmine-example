@@ -44,4 +44,37 @@ describe ("Views Tests", function(){
         expect(Ember.$.trim(view.$().text())).toEqual("foobar");
     });
 
+    it ("model property is output when view bound", function(){
+        var person = App.Person.createRecord({id: 2, username: 'foobar'});
+        var view = Ember.View.create({
+            template: Ember.Handlebars.compile('{{#each foo in controller}}{{foo.username}}{{/each}}')
+        });
+        var controller = Ember.ArrayController.create({
+            content: []
+        });
+        get(controller, 'content').push(person);
+        set(view, 'controller', controller);
+        Ember.run(function() {
+            view.appendTo("#view-tests");
+        });
+        expect(Ember.$.trim(view.$().text())).toEqual("foobar");
+    });
+
+    it ("actual template will bind model property", function(){
+        Ember.TEMPLATES['person'] = Ember.Handlebars.compile('{{username}}');
+        var person = App.Person.createRecord({id: 3, username: 'foobar'});
+        var view = Ember.View.create({
+            template: Ember.TEMPLATES["person"]
+        });
+        var controller = Ember.ObjectController.create({
+            content: null
+        });
+        set(controller, 'content', person);
+        set(view, 'controller', controller);
+        Ember.run(function() {
+            view.appendTo("#view-tests");
+        });
+        expect(Ember.$.trim(view.$().text())).toEqual("foobar");
+    });
+
 });
