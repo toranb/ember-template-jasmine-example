@@ -1,0 +1,22 @@
+<table width="250px">
+<thead>
+<th>id</th>
+<th>username</th>
+</thead>
+<tbody>
+   {{#each person in controller.paginatedContent}}
+    <tr>
+      <td>{{person.id}}</td>
+      <td>{{view Ember.TextField valueBinding="person.username"}}</td>
+    </tr>
+   {{/each}}
+</tbody>
+</table>
+
+<div name="prev">{{#linkTo 'person.page' prevPage target="controller"}}Prev{{/linkTo}}</div>
+<ul class="pagination gui-text">
+  {{#each pages}}
+    {{view App.PaginationView contentBinding="this"}}
+  {{/each}}
+</ul>
+<div name="next">{{#linkTo 'person.page' nextPage target="controller"}}Next{{/linkTo}}</div>

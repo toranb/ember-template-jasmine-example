@@ -34,6 +34,10 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
+COMPRESS_JS_FILTERS = (
+    'compressor.filters.jsmin.JSMinFilter',
+)
+
 SECRET_KEY = 'w!50w0@sxg6o=mid=%uyd7%l)zhmttolz8aw-4ay#+e%&fj_cd'
 
 TEMPLATE_LOADERS = (
@@ -67,10 +71,11 @@ INSTALLED_APPS = (
     'example',
 )
 
-NODE_ROOT = join(PROJECT_ROOT, '..', 'node_modules')
+COMPRESS_ENABLED = False
+
+NODE_ROOT = join(PROJECT_ROOT, 'node_modules')
 HANDLEBARS_PATH = join(NODE_ROOT, 'django-ember-precompile', 'bin', 'django-ember-precompile')
 
-COMPRESS_ENABLED = True
 COMPRESS_PRECOMPILERS = (
     ('text/x-handlebars', '{} {{infile}}'.format(HANDLEBARS_PATH)),
 )
