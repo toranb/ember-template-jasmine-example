@@ -1,1 +1,30 @@
-I wanted to show how you could unit test handlebars templates for an ember.js app using jasmine
+An example of unit testing handlebars templates bound to ember.js models
+
+To run the django web app
+
+1.) mkvirtualenv example
+2.) workon example
+3.) pip install -r requirements.txt
+4.) python manage.py syncdb --noinput
+5.) python manage.py runserver
+
+To run the jasmine tests
+
+1. npm install
+2. node node_modules/jasmine-phantom-node/bin/jasmine-phantom-node example/static
+
+The jasmine tests that show how you can assert against your bound views
+
+https://github.com/toranb/ember-template-jasmine-example/blob/master/example/static/script/tests/views.spec.js
+
+The index.html page that wires up the web app
+
+https://github.com/toranb/ember-template-jasmine-example/blob/master/example/templates/example/index.html
+
+The ember.js javascript that does the pagination over a list of models
+
+https://github.com/toranb/ember-template-jasmine-example/blob/master/example/static/script/app/app.js
+
+Another jasmine test class that I used to test the pagination mixin
+
+https://github.com/toranb/ember-template-jasmine-example/blob/master/example/static/script/tests/people.spec.js
