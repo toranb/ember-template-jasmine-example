@@ -1,0 +1,7 @@
+*.pyc
+*.pyo
+
+.ropeproject/*
+
+node_modules/*
+static/*
