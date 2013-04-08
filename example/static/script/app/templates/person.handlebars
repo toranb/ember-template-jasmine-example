@@ -4,12 +4,7 @@
 <th>username</th>
 </thead>
 <tbody>
-   {{#each person in controller.paginatedContent}}
-    <tr>
-      <td>{{person.id}}</td>
-      <td>{{view Ember.TextField valueBinding="person.username"}}</td>
-    </tr>
-   {{/each}}
+   {{ partial "peopleTable" }}
 </tbody>
 </table>
 

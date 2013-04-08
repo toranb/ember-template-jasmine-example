@@ -11,14 +11,31 @@
 <script type="text/javascript" src="/static/script/vendor/ember-data.js"></script>
 </head>
 <body>
-<script type="text/x-handlebars" data-template-name="application">
-  {{ outlet }}
+</body>
+<script type="text/javascript">
+  (function compile(){
+    var templates = [];
+    templates.push('static/script/app/templates/_peopleTable.handlebars');
+    templates.push('static/script/app/templates/person.handlebars');
+    templates.push('static/script/app/templates/pagination.handlebars');
+    for(i = 0; i < templates.length; i++) {
+        var templatePath = templates[i];
+        var templateName = templates[i].split('/templates/').reverse()[0].replace('.handlebars', '');
+        $.ajax({
+          url: templatePath,
+          cache: false,
+          async: false,
+          success: function (source) {
+            var input = Ember.Handlebars.precompile(source.toString());
+            Ember.TEMPLATES[templateName] = Ember.Handlebars.template(input);
+          }
+        });
+    }
+  }());
 </script>
-<script type="text/x-handlebars" data-template-name="person">
-</script>
+
 <script type="text/javascript">
   var require = function(script) {
     document.write('<script src="http://localhost:8091/' + script + '"></' + 'script>');
   }
 </script>
-</body>

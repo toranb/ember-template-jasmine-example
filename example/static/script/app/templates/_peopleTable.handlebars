@@ -1,0 +1,6 @@
+{{#each person in controller.paginatedContent}}
+<tr>
+    <td><span class="person_id">{{person.id}}</span></td>
+    <td>{{view Ember.TextField valueBinding="person.username"}}</td>
+</tr>
+{{/each}}
