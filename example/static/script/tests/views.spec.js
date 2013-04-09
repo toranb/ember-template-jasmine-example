@@ -52,10 +52,8 @@ describe ("Views Tests", function(){
             template: Ember.TEMPLATES["_peopleTable"]
         });
         var controller = App.PersonController.create({
-            content: []
+            content: [first, last]
         });
-        get(controller, 'content').push(first);
-        get(controller, 'content').push(last);
         set(view, 'controller', controller);
         Ember.run(function() {
             view.appendTo("#view-tests");
