@@ -1,9 +1,23 @@
 require('static/script/vendor/pagination.js');
 require('static/script/app/app.js');
+require_template('static/script/app/templates/_peopleTable.handlebars');
 
 describe ("Views Tests", function(){
 
-    var get = Ember.get, set = Ember.set;
+    var root, rootElement, get = Ember.get, set = Ember.set;
+
+    beforeEach(function(){
+        root = $('body').append('<div id="view-tests" />');
+        rootElement = window.App.rootElement;
+        window.App.rootElement = $("#view-tests");
+    });
+
+    afterEach(function() {
+        Ember.run(function() {
+            window.App.rootElement = rootElement;
+            $("#view-tests").html('');
+        });
+    });
 
     it ("template will render given output", function(){
         var view = Ember.View.create({
