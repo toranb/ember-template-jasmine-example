@@ -26,7 +26,7 @@ describe ("Views Tests", function(){
         Ember.run(function() {
             view.appendTo("#view-tests");
         });
-        expect(Ember.$.trim(view.$().text())).toEqual("bar");
+        expect(view.$().text()).toEqual("bar");
     });
 
     it ("the username property is bound to the handlebars template", function(){
@@ -42,7 +42,7 @@ describe ("Views Tests", function(){
         Ember.run(function() {
             view.appendTo("#view-tests");
         });
-        expect(Ember.$.trim(view.$().text())).toEqual("foobar");
+        expect(view.$().text()).toEqual("foobar");
     });
 
     it ("each model is bound to the handlebars template", function(){
@@ -60,10 +60,10 @@ describe ("Views Tests", function(){
         Ember.run(function() {
             view.appendTo("#view-tests");
         });
-        expect(Ember.$.trim(view.$('.ember-text-field').eq(0).val())).toEqual("first");
-        expect(Ember.$.trim(view.$('.ember-text-field').eq(1).val())).toEqual("last");
-        expect(Ember.$.trim(view.$('.person_id').eq(0).text())).toEqual("2");
-        expect(Ember.$.trim(view.$('.person_id').eq(1).text())).toEqual("3");
+        expect(view.$('.ember-text-field').eq(0).val()).toEqual("first");
+        expect(view.$('.ember-text-field').eq(1).val()).toEqual("last");
+        expect(view.$('.person_id').eq(0).text()).toEqual("2");
+        expect(view.$('.person_id').eq(1).text()).toEqual("3");
     });
 
 });
