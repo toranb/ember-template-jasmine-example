@@ -14,10 +14,9 @@
 </body>
 <script type="text/javascript">
   var require_template = function(template) {
-    var templatePath = template;
     var templateName = template.split('/templates/').reverse()[0].replace('.handlebars', '');
     $.ajax({
-      url: templatePath,
+      url: template,
       cache: false,
       async: false,
       success: function (source) {
