@@ -35,9 +35,8 @@ describe ("Views Tests", function(){
             template: Ember.Handlebars.compile('{{username}}')
         });
         var controller = Ember.ObjectController.create({
-            content: []
+            content: person
         });
-        set(controller, 'content', person);
         set(view, 'controller', controller);
         Ember.run(function() {
             view.appendTo("#view-tests");
